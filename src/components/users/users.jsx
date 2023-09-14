@@ -6,6 +6,8 @@ export default function Users() {
   const [user, setUser] = useState("");
 
   const searchAllUsers = () => {
+    setUsers("")
+    setTimeout(() => {
     if (user) {
       fetch(`https://api.github.com/search/users?q=${user}`)
         .then((res) => res.json())
@@ -17,7 +19,7 @@ export default function Users() {
         });
     } else {
       getAllUsers();
-    }
+    }}, 1000);
   };
 
   const getAllUsers = () => {
@@ -27,7 +29,7 @@ export default function Users() {
         .then((res) => res.json())
         .then((response) => setUsers(response))
         .catch((err) => console.log(err));
-    }, 6000);
+    }, 1000);
   };
 
   useEffect(() => {
